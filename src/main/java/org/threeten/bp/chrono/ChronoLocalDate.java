@@ -31,15 +31,6 @@
  */
 package org.threeten.bp.chrono;
 
-import static org.threeten.bp.temporal.ChronoField.DAY_OF_MONTH;
-import static org.threeten.bp.temporal.ChronoField.EPOCH_DAY;
-import static org.threeten.bp.temporal.ChronoField.ERA;
-import static org.threeten.bp.temporal.ChronoField.MONTH_OF_YEAR;
-import static org.threeten.bp.temporal.ChronoField.YEAR;
-import static org.threeten.bp.temporal.ChronoField.YEAR_OF_ERA;
-
-import java.util.Comparator;
-
 import org.threeten.bp.DateTimeException;
 import org.threeten.bp.LocalDate;
 import org.threeten.bp.LocalTime;
@@ -56,6 +47,15 @@ import org.threeten.bp.temporal.TemporalField;
 import org.threeten.bp.temporal.TemporalQueries;
 import org.threeten.bp.temporal.TemporalQuery;
 import org.threeten.bp.temporal.TemporalUnit;
+
+import java.util.Comparator;
+
+import static org.threeten.bp.temporal.ChronoField.DAY_OF_MONTH;
+import static org.threeten.bp.temporal.ChronoField.EPOCH_DAY;
+import static org.threeten.bp.temporal.ChronoField.ERA;
+import static org.threeten.bp.temporal.ChronoField.MONTH_OF_YEAR;
+import static org.threeten.bp.temporal.ChronoField.YEAR;
+import static org.threeten.bp.temporal.ChronoField.YEAR_OF_ERA;
 
 /**
  * A date without time-of-day or time-zone in an arbitrary chronology, intended
@@ -455,6 +455,10 @@ public abstract class ChronoLocalDate
     public String format(DateTimeFormatter formatter) {
         Jdk8Methods.requireNonNull(formatter, "formatter");
         return formatter.format(this);
+    }
+
+    public String format(String pattern) {
+        return DateTimeFormatter.ofPattern(pattern).format(this);
     }
 
     //-----------------------------------------------------------------------

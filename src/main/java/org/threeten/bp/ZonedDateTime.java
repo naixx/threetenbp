@@ -31,18 +31,6 @@
  */
 package org.threeten.bp;
 
-import static org.threeten.bp.temporal.ChronoField.INSTANT_SECONDS;
-import static org.threeten.bp.temporal.ChronoField.NANO_OF_SECOND;
-import static org.threeten.bp.temporal.ChronoField.OFFSET_SECONDS;
-
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
-import java.io.InvalidObjectException;
-import java.io.ObjectStreamException;
-import java.io.Serializable;
-import java.util.List;
-
 import org.threeten.bp.chrono.ChronoZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.format.DateTimeParseException;
@@ -62,6 +50,18 @@ import org.threeten.bp.temporal.UnsupportedTemporalTypeException;
 import org.threeten.bp.temporal.ValueRange;
 import org.threeten.bp.zone.ZoneOffsetTransition;
 import org.threeten.bp.zone.ZoneRules;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+import java.io.InvalidObjectException;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
+import java.util.List;
+
+import static org.threeten.bp.temporal.ChronoField.INSTANT_SECONDS;
+import static org.threeten.bp.temporal.ChronoField.NANO_OF_SECOND;
+import static org.threeten.bp.temporal.ChronoField.OFFSET_SECONDS;
 
 /**
  * A date-time with a time-zone in the ISO-8601 calendar system,
@@ -232,6 +232,10 @@ public final class ZonedDateTime
      */
     public static ZonedDateTime of(LocalDate date, LocalTime time, ZoneId zone) {
         return of(LocalDateTime.of(date, time), zone);
+    }
+
+    public static ZonedDateTime of(long epochMilli){
+        return ofInstant(Instant.ofEpochMilli(epochMilli),ZoneId.systemDefault());
     }
 
     /**

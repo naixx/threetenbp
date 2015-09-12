@@ -31,12 +31,6 @@
  */
 package org.threeten.bp.chrono;
 
-import static org.threeten.bp.temporal.ChronoField.INSTANT_SECONDS;
-import static org.threeten.bp.temporal.ChronoField.OFFSET_SECONDS;
-import static org.threeten.bp.temporal.ChronoUnit.NANOS;
-
-import java.util.Comparator;
-
 import org.threeten.bp.DateTimeException;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
@@ -58,6 +52,12 @@ import org.threeten.bp.temporal.TemporalQuery;
 import org.threeten.bp.temporal.TemporalUnit;
 import org.threeten.bp.temporal.UnsupportedTemporalTypeException;
 import org.threeten.bp.temporal.ValueRange;
+
+import java.util.Comparator;
+
+import static org.threeten.bp.temporal.ChronoField.INSTANT_SECONDS;
+import static org.threeten.bp.temporal.ChronoField.OFFSET_SECONDS;
+import static org.threeten.bp.temporal.ChronoUnit.NANOS;
 
 /**
  * A date-time with a time-zone in an arbitrary chronology,
@@ -395,6 +395,10 @@ public abstract class ChronoZonedDateTime<D extends ChronoLocalDate>
     public String format(DateTimeFormatter formatter) {
         Jdk8Methods.requireNonNull(formatter, "formatter");
         return formatter.format(this);
+    }
+
+    public String format(String pattern) {
+        return DateTimeFormatter.ofPattern(pattern).format(this);
     }
 
     //-----------------------------------------------------------------------

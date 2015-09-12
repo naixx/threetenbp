@@ -31,12 +31,6 @@
  */
 package org.threeten.bp.chrono;
 
-import static org.threeten.bp.temporal.ChronoField.EPOCH_DAY;
-import static org.threeten.bp.temporal.ChronoField.NANO_OF_DAY;
-import static org.threeten.bp.temporal.ChronoUnit.NANOS;
-
-import java.util.Comparator;
-
 import org.threeten.bp.DateTimeException;
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
@@ -57,6 +51,12 @@ import org.threeten.bp.temporal.TemporalQueries;
 import org.threeten.bp.temporal.TemporalQuery;
 import org.threeten.bp.temporal.TemporalUnit;
 import org.threeten.bp.zone.ZoneRules;
+
+import java.util.Comparator;
+
+import static org.threeten.bp.temporal.ChronoField.EPOCH_DAY;
+import static org.threeten.bp.temporal.ChronoField.NANO_OF_DAY;
+import static org.threeten.bp.temporal.ChronoUnit.NANOS;
 
 /**
  * A date-time without a time-zone in an arbitrary chronology, intended
@@ -261,6 +261,10 @@ public abstract class ChronoLocalDateTime<D extends ChronoLocalDate>
     public String format(DateTimeFormatter formatter) {
         Jdk8Methods.requireNonNull(formatter, "formatter");
         return formatter.format(this);
+    }
+
+    public String format(String pattern) {
+        return DateTimeFormatter.ofPattern(pattern).format(this);
     }
 
     //-----------------------------------------------------------------------

@@ -31,22 +31,6 @@
  */
 package org.threeten.bp;
 
-import static org.threeten.bp.temporal.ChronoField.HOUR_OF_DAY;
-import static org.threeten.bp.temporal.ChronoField.MICRO_OF_DAY;
-import static org.threeten.bp.temporal.ChronoField.MINUTE_OF_HOUR;
-import static org.threeten.bp.temporal.ChronoField.NANO_OF_DAY;
-import static org.threeten.bp.temporal.ChronoField.NANO_OF_SECOND;
-import static org.threeten.bp.temporal.ChronoField.SECOND_OF_DAY;
-import static org.threeten.bp.temporal.ChronoField.SECOND_OF_MINUTE;
-import static org.threeten.bp.temporal.ChronoUnit.NANOS;
-
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
-import java.io.InvalidObjectException;
-import java.io.ObjectStreamException;
-import java.io.Serializable;
-
 import org.threeten.bp.format.DateTimeFormatter;
 import org.threeten.bp.format.DateTimeParseException;
 import org.threeten.bp.jdk8.DefaultInterfaceTemporalAccessor;
@@ -63,6 +47,22 @@ import org.threeten.bp.temporal.TemporalQuery;
 import org.threeten.bp.temporal.TemporalUnit;
 import org.threeten.bp.temporal.UnsupportedTemporalTypeException;
 import org.threeten.bp.temporal.ValueRange;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+import java.io.InvalidObjectException;
+import java.io.ObjectStreamException;
+import java.io.Serializable;
+
+import static org.threeten.bp.temporal.ChronoField.HOUR_OF_DAY;
+import static org.threeten.bp.temporal.ChronoField.MICRO_OF_DAY;
+import static org.threeten.bp.temporal.ChronoField.MINUTE_OF_HOUR;
+import static org.threeten.bp.temporal.ChronoField.NANO_OF_DAY;
+import static org.threeten.bp.temporal.ChronoField.NANO_OF_SECOND;
+import static org.threeten.bp.temporal.ChronoField.SECOND_OF_DAY;
+import static org.threeten.bp.temporal.ChronoField.SECOND_OF_MINUTE;
+import static org.threeten.bp.temporal.ChronoUnit.NANOS;
 
 /**
  * A time without time-zone in the ISO-8601 calendar system,
@@ -1504,6 +1504,10 @@ public final class LocalTime
     public String format(DateTimeFormatter formatter) {
         Jdk8Methods.requireNonNull(formatter, "formatter");
         return formatter.format(this);
+    }
+
+    public String format(String pattern) {
+        return DateTimeFormatter.ofPattern(pattern).format(this);
     }
 
     //-----------------------------------------------------------------------
